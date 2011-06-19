@@ -1,0 +1,4 @@
+pyramid
+WebError
+pyramid_couchauth
+py_bcrypt
