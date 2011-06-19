@@ -1,7 +1,7 @@
 Pyramid CouchDB Auth Example
 ============================
 
-[Pyramid][1] project implementing [pyramid_couchauth][2].
+A [Pyramid][1] example project implementing [pyramid_couchauth][2].
 
 Running the Example
 -------------------
