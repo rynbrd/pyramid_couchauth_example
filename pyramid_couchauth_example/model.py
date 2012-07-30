@@ -125,7 +125,7 @@ def init_model(settings):
         If a db name was provided in the config file we'll use it intead.
         """
         db_name = settings[db_key]
-    Session.auth = Session.server[db_name]
+    Session.auth = Session.server.get_or_create_db(db_name)
 
     """
     Associate the model with the database.
