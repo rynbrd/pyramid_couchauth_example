@@ -1,13 +1,7 @@
-# Copyright (c) 2011, Ryan Bourgeois <bluedragonx@gmail.com>
-# All rights reserved.
+# Copyright (c) 2011-2012 Ryan Bourgeois <bluedragonx@gmail.com>
 #
-# This software is licensed under a modified BSD license as defined in the
-# provided license file at the root of this project.  You may modify and/or
-# distribute in accordance with those terms.
-#
-# This software is provided "as is" and any express or implied warranties,
-# including, but not limited to, the implied warranties of merchantability and
-# fitness for a particular purpose are disclaimed.
+# This project is free software according to the BSD-modified license. Refer to
+# the LICENSE file for complete details.
 
 import os
 
@@ -21,7 +15,7 @@ requires = ['pyramid',
     'py_bcrypt']
 
 setup(name='pyramid_couchauth_example',
-      version='0.0',
+      version='0.1',
       description='Working pyramid_couchauth example.',
       long_description='A full pyramid project implementing pyramid_couchauth as the authentication/authorization mechanism.',
       classifiers=[
@@ -30,10 +24,10 @@ setup(name='pyramid_couchauth_example',
         "Topic :: Internet :: WWW/HTTP",
         "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
         ],
-      author='',
-      author_email='',
-      url='',
-      keywords='web pyramid pylons',
+      author='Ryan Bourgeois',
+      author_email='bluedragonx@gmail.com',
+      url='https://github.com/BlueDragonX/pyramid_couchauth_example',
+      keywords='web pyramid pylons couchdb',
       packages=find_packages(),
       include_package_data=True,
       zip_safe=False,
@@ -44,6 +38,5 @@ setup(name='pyramid_couchauth_example',
       [paste.app_factory]
       main = pyramid_couchauth_example:main
       """,
-      paster_plugins=['pyramid'],
       )
 

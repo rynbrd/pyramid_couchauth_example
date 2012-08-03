@@ -1,38 +1,30 @@
-# Copyright (c) 2011, Ryan Bourgeois <bluedragonx@gmail.com>
-# All rights reserved.
+# Copyright (c) 2011-2012 Ryan Bourgeois <bluedragonx@gmail.com>
 #
-# This software is licensed under a modified BSD license as defined in the
-# provided license file at the root of this project.  You may modify and/or
-# distribute in accordance with those terms.
-#
-# This software is provided "as is" and any express or implied warranties,
-# including, but not limited to, the implied warranties of merchantability and
-# fitness for a particular purpose are disclaimed.
+# This project is free software according to the BSD-modified license. Refer to
+# the LICENSE file for complete details.
+"""
+Application entry point.
+"""
 
 from pyramid.config import Configurator
 from pyramid.exceptions import Forbidden
 from pyramid_couchauth_example.resources import get_root
 from pyramid_couchauth_example.model import init_model, Session
-from pyramid_couchauth.identification import AuthTktIdentifier
-from pyramid_couchauth.authentication import CouchAuthenticationPolicy
-from pyramid_couchauth.authorization import CouchAuthorizationPolicy
+import pyramid_couchauth
 
 def main(global_config, **settings):
+    """Application entry point."""
     init_model(settings)
-
-    """
-    Set up couchauth. Use authtkt for the identifier.
-    """
-    identifier = AuthTktIdentifier('sekret')
-    authentication = CouchAuthenticationPolicy(Session.auth, identifier)
-    authorization = CouchAuthorizationPolicy(Session.auth)
 
     """
     Configure the application with couchdb auth.
     """
-    config = Configurator(root_factory=get_root, settings=settings,
-        authentication_policy=authentication,
-        authorization_policy=authorization)
+    config = Configurator(root_factory=get_root, settings=settings)
+
+    """
+    Set up couchauth.
+    """
+    pyramid_couchauth.configure(config, Session.auth)
 
     """
     Set up all of our views.

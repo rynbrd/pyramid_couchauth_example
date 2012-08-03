@@ -1,16 +1,14 @@
-# Copyright (c) 2011, Ryan Bourgeois <bluedragonx@gmail.com>
-# All rights reserved.
+# Copyright (c) 2011-2012 Ryan Bourgeois <bluedragonx@gmail.com>
 #
-# This software is licensed under a modified BSD license as defined in the
-# provided license file at the root of this project.  You may modify and/or
-# distribute in accordance with those terms.
-#
-# This software is provided "as is" and any express or implied warranties,
-# including, but not limited to, the implied warranties of merchantability and
-# fitness for a particular purpose are disclaimed.
+# This project is free software according to the BSD-modified license. Refer to
+# the LICENSE file for complete details.
+"""
+Define the CouchDB data model.
+"""
 
 from couchdbkit import Server, Document, StringProperty, SchemaListProperty
 import bcrypt
+
 
 def hashpw(password, salt=None):
     """
@@ -24,6 +22,7 @@ def hashpw(password, salt=None):
         salt = bcrypt.gensalt()
     return unicode(bcrypt.hashpw(password, salt))
 
+
 def hashcmp(hash, password):
     """
     Compare a hash to an un-hashed password.  Returns True if they match
@@ -35,11 +34,13 @@ def hashcmp(hash, password):
     salt = hash[:29]
     return hash == hashpw(password, salt)
 
+
 class Permission(Document):
     """
     Permission document.  Permissions belong to groups in a many-to-many relationship.
     """
     name = StringProperty(required=True)
+
 
 class Group(Document):
     """
@@ -47,6 +48,7 @@ class Group(Document):
     """
     name = StringProperty(required=True)
     permissions = SchemaListProperty(Permission)
+
 
 class User(Document):
     """
@@ -83,6 +85,7 @@ class User(Document):
         """
         self.password = hashpw(password)
 
+
 class CouchSession:
 
     def __init__(self):
@@ -112,6 +115,7 @@ class CouchSession:
         use the 'auth' database by default.
         """
 
+
 def init_model(settings):
     """
     Initialize the CouchDB models.  Called from main during app startup.
@@ -133,6 +137,7 @@ def init_model(settings):
     User.set_db(Session.auth)
     Group.set_db(Session.auth)
     Permission.set_db(Session.auth)
+
 
 Session = CouchSession()
 
