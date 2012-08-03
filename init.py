@@ -1,3 +1,7 @@
+# Copyright (c) 2011-2012 Ryan Bourgeois <bluedragonx@gmail.com>
+#
+# This project is free software according to the BSD-modified license. Refer to
+# the LICENSE file for complete details.
 
 import os, sys, pkg_resources
 from paste.deploy.loadwsgi import appconfig
