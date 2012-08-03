@@ -13,7 +13,9 @@ from pyramid.httpexceptions import HTTPFound
 from pyramid.security import remember, forget, authenticated_userid
 from pyramid_couchauth_example.model import User
 
+
 def login(context, request):
+    """Display a login prompt."""
     if request.method != 'POST':
         return {'error': ''}
     if 'username' not in request.params:
@@ -34,18 +36,24 @@ def login(context, request):
     redirect = '%s/auth/postlogin' % request.application_url
     return HTTPFound(location=redirect, headers=headers)
 
+
 def logout(context, request):
+    """Handle logout action."""
     headers = forget(request)
     redirect = '%s/auth/postlogout' % request.application_url
     return HTTPFound(location=redirect, headers=headers)
 
+
 def postlogin(context, request):
+    """Handle login action and display post-login "welcome" page."""
     username = authenticated_userid(request)
     if username is None:
         redirect = '%s/auth/login' % request.application_url
         return HTTPFound(location=redirect)
     return {}
 
+
 def postlogout(context, request):
+    """Display post-logout "goodbye" page."""
     return {}
 
