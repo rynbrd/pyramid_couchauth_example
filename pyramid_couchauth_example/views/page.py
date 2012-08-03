@@ -3,7 +3,7 @@
 # This project is free software according to the BSD-modified license. Refer to
 # the LICENSE file for complete details.
 """
-Define auth pages.
+Define page actions.
 """
 
 from pyramid.security import authenticated_userid
