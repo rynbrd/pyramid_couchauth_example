@@ -30,10 +30,10 @@ setup(name='pyramid_couchauth_example',
         "Topic :: Internet :: WWW/HTTP",
         "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
         ],
-      author='',
-      author_email='',
-      url='',
-      keywords='web pyramid pylons',
+      author='Ryan Bourgeois',
+      author_email='bluedragonx@gmail.com',
+      url='https://github.com/BlueDragonX/pyramid_couchauth_example',
+      keywords='web pyramid pylons couchdb',
       packages=find_packages(),
       include_package_data=True,
       zip_safe=False,
@@ -44,6 +44,5 @@ setup(name='pyramid_couchauth_example',
       [paste.app_factory]
       main = pyramid_couchauth_example:main
       """,
-      paster_plugins=['pyramid'],
       )
 
