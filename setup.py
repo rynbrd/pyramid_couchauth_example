@@ -15,7 +15,7 @@ requires = ['pyramid',
     'py_bcrypt']
 
 setup(name='pyramid_couchauth_example',
-      version='0.0',
+      version='0.1',
       description='Working pyramid_couchauth example.',
       long_description='A full pyramid project implementing pyramid_couchauth as the authentication/authorization mechanism.',
       classifiers=[
