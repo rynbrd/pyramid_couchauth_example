@@ -13,26 +13,20 @@ from pyramid.config import Configurator
 from pyramid.exceptions import Forbidden
 from pyramid_couchauth_example.resources import get_root
 from pyramid_couchauth_example.model import init_model, Session
-from pyramid_couchauth.identification import AuthTktIdentifier
-from pyramid_couchauth.authentication import CouchAuthenticationPolicy
-from pyramid_couchauth.authorization import CouchAuthorizationPolicy
+import pyramid_couchauth
 
 def main(global_config, **settings):
     init_model(settings)
 
     """
-    Set up couchauth. Use authtkt for the identifier.
-    """
-    identifier = AuthTktIdentifier('sekret')
-    authentication = CouchAuthenticationPolicy(Session.auth, identifier)
-    authorization = CouchAuthorizationPolicy(Session.auth)
-
-    """
     Configure the application with couchdb auth.
     """
-    config = Configurator(root_factory=get_root, settings=settings,
-        authentication_policy=authentication,
-        authorization_policy=authorization)
+    config = Configurator(root_factory=get_root, settings=settings)
+
+    """
+    Set up couchauth.
+    """
+    pyramid_couchauth.configure(config, Session.auth)
 
     """
     Set up all of our views.
