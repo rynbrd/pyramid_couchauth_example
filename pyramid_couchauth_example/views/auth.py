@@ -2,6 +2,9 @@
 #
 # This project is free software according to the BSD-modified license. Refer to
 # the LICENSE file for complete details.
+"""
+Define auth actions.
+"""
 
 from pyramid.httpexceptions import HTTPFound
 from pyramid.security import remember, forget, authenticated_userid

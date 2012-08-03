@@ -2,6 +2,9 @@
 #
 # This project is free software according to the BSD-modified license. Refer to
 # the LICENSE file for complete details.
+"""
+Initialize CouchDB with example views and data.
+"""
 
 import os, sys, pkg_resources
 from paste.deploy.loadwsgi import appconfig
@@ -9,7 +12,9 @@ from pyramid_couchauth_example.model import Session, init_model
 from pyramid_couchauth_example.model import User, Group, Permission
 from couchdbkit.loaders import FileSystemDocsLoader
 
+
 def setup_app(settings):
+    """Set up the application."""
     # Init CouchDB model.
     print('initializing model')
     init_model(settings)
@@ -36,12 +41,15 @@ def setup_app(settings):
     user.groups.append(group)
     user.save()
 
+
 def main(argv=sys.argv):
+    """Script entry point."""
     dist = pkg_resources.get_distribution('pyramid_couchauth_example')
     root = dist.location
     config = 'config:' + os.path.join(root, 'development.ini')
     settings = appconfig(config, 'pyramid_couchauth_example')
     setup_app(settings)
+
 
 if __name__ == '__main__':
     main()

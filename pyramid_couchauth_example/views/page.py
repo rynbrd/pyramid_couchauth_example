@@ -2,15 +2,21 @@
 #
 # This project is free software according to the BSD-modified license. Refer to
 # the LICENSE file for complete details.
+"""
+Define auth pages.
+"""
 
 from pyramid.security import authenticated_userid
 
+
 def public(context, request):
+    """Get public page data."""
     username = authenticated_userid(request)
     if username is None:
         username = ""
     return {'username': username}
 
 def private(context, request):
+    """Get private page data."""
     return {}
 

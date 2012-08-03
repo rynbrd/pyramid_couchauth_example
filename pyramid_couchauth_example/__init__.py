@@ -2,6 +2,9 @@
 #
 # This project is free software according to the BSD-modified license. Refer to
 # the LICENSE file for complete details.
+"""
+Application entry point.
+"""
 
 from pyramid.config import Configurator
 from pyramid.exceptions import Forbidden
@@ -10,6 +13,7 @@ from pyramid_couchauth_example.model import init_model, Session
 import pyramid_couchauth
 
 def main(global_config, **settings):
+    """Application entry point."""
     init_model(settings)
 
     """
